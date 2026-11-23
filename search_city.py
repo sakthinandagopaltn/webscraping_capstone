@@ -8,6 +8,7 @@ from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.support import expected_conditions as EC
+from datetime import datetime
 
 driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
 record = None
@@ -78,6 +79,7 @@ def scrape_city(driver, query):
         "pressure": value_after_label(driver, "Pressure"),
         "humidity": value_after_label(driver, "Humidity"),
         "dew_point": value_after_label(driver, "Dew Point"),
+        'scraped_at': datetime.now().isoformat(timespec='seconds'),
     }
 
 try:
